@@ -9,11 +9,7 @@ import com.example.finin.R;
 import com.example.finin.adapters.ProfileRvAdapter;
 import com.example.finin.callBacks.OnItemClickedListener;
 import com.example.finin.models.Datum;
-import com.example.finin.models.UserResponse;
 import com.example.finin.viewmodels.UserViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +18,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.paging.PagedList;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +29,6 @@ public class UserListFragment extends Fragment implements OnItemClickedListener 
     ProfileRvAdapter profileRvAdapter;
     UserViewModel userViewModel;
     NavController navController;
-    private List<Datum> userList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -56,17 +52,17 @@ public class UserListFragment extends Fragment implements OnItemClickedListener 
 
 
     private void subscribeObservers() {
-        userViewModel.getUsers().observe(this.getViewLifecycleOwner(), new Observer<UserResponse>() {
+        userViewModel.getUsers().observe(getViewLifecycleOwner(), new Observer<PagedList<Datum>>() {
             @Override
-            public void onChanged(UserResponse listResource) {
-                profileRvAdapter.resetData();
-                profileRvAdapter.addData(listResource.getData());
+            public void onChanged(PagedList<Datum> movies) {
+                profileRvAdapter.submitList(movies);
+//                showLoader(false);
             }
         });
     }
 
     private void initRecyclerView() {
-        profileRvAdapter = new ProfileRvAdapter(userList, this);
+        profileRvAdapter = new ProfileRvAdapter(this);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(UserListFragment.this.getContext());
         rv_user_list.setLayoutManager(mLayoutManager);
         rv_user_list.setItemAnimator(new DefaultItemAnimator());

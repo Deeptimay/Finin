@@ -1,8 +1,10 @@
-package com.example.finin;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.finin.ui;
 
 import android.os.Bundle;
+
+import com.example.finin.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 

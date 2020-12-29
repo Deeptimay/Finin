@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:enterAnim="@anim/slide_in_right"
+    app:exitAnim="@anim/slide_out_left"
+    app:popEnterAnim="@anim/slide_in_left"
+    app:popExitAnim="@anim/slide_out_right"
+    app:startDestination="@id/userListFragment">
+
+    <dialog
+        android:id="@+id/profileDetailFragment"
+        android:name="com.example.finin.ui.ProfileDetailFragment"
+        android:label="ProfileDetailFragment"
+        tools:layout="@layout/fragment_profile_details" />
+
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="com.example.finin.ui.UserListFragment"
+        android:label="UserListFragment"
+        tools:layout="@layout/user_list_fragment">
+        <action
+            android:id="@+id/action_userListFragment_to_profileDetailFragment"
+            app:destination="@id/profileDetailFragment" />
+    </fragment>
+</navigation>

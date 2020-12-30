@@ -9,6 +9,12 @@ import com.example.finin.MyApplication;
 
 import java.io.IOException;
 
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
+import dagger.hilt.InstallIn;
+import dagger.hilt.android.components.ApplicationComponent;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -17,6 +23,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+@InstallIn(ApplicationComponent.class)
+@Module
 public class RetrofitClient {
 
     private static final String API_URL = "https://reqres.in";
@@ -66,6 +74,8 @@ public class RetrofitClient {
                 .build();
     }
 
+    @Provides
+    @Singleton
     public static FetchUsersService getInstance() {
         synchronized (sLock) {
             if (sInstance == null) {
@@ -75,6 +85,8 @@ public class RetrofitClient {
         }
     }
 
+    @Provides
+    @Singleton
     public static Retrofit getRetrofitInstance() {
         return new Retrofit.Builder()
                 .baseUrl(API_URL)

@@ -14,7 +14,11 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
+import dagger.hilt.android.scopes.ActivityRetainedScoped;
+import dagger.hilt.android.scopes.ActivityScoped;
 
+@ActivityRetainedScoped
+@ActivityScoped
 public class UserViewModel extends AndroidViewModel {
 
     private final LiveData<PagedList<Datum>> usersList;

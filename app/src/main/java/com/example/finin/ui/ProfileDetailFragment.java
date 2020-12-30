@@ -13,13 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
+import dagger.hilt.android.AndroidEntryPoint;
+import dagger.hilt.android.scopes.FragmentScoped;
 
+@FragmentScoped
+@AndroidEntryPoint
 public class ProfileDetailFragment extends DialogFragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         FragmentProfileDetailsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_details, container, false);
         View view = binding.getRoot();
         Datum userData = (Datum) getArguments().getSerializable("Datum");

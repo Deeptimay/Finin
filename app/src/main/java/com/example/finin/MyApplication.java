@@ -1,7 +1,9 @@
 package com.example.finin;
 
 import androidx.multidex.MultiDexApplication;
+import dagger.hilt.android.HiltAndroidApp;
 
+@HiltAndroidApp
 public class MyApplication extends MultiDexApplication {
 
     private static MyApplication singleton;

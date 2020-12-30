@@ -11,6 +11,8 @@ import com.example.finin.callBacks.OnItemClickedListener;
 import com.example.finin.models.Datum;
 import com.example.finin.viewmodels.UserViewModel;
 
+import javax.inject.Inject;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -22,12 +24,17 @@ import androidx.paging.PagedList;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import dagger.hilt.android.scopes.FragmentScoped;
 
+@FragmentScoped
 public class UserListFragment extends Fragment implements OnItemClickedListener {
 
     RecyclerView rv_user_list;
+    @Inject
     ProfileRvAdapter profileRvAdapter;
+    @Inject
     UserViewModel userViewModel;
+    @Inject
     NavController navController;
 
     @Nullable

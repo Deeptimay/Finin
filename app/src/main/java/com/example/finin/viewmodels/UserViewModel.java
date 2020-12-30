@@ -12,6 +12,7 @@ import java.util.concurrent.Executors;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 import dagger.hilt.android.scopes.ActivityRetainedScoped;
@@ -21,13 +22,14 @@ import dagger.hilt.android.scopes.ActivityScoped;
 @ActivityScoped
 public class UserViewModel extends AndroidViewModel {
 
+    public MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
     private final LiveData<PagedList<Datum>> usersList;
     Executor executor;
     UserDataSourceFactory userDataSourceFactory;
 
     public UserViewModel(@NonNull Application application) {
         super(application);
-        userDataSourceFactory = new UserDataSourceFactory();
+        userDataSourceFactory = new UserDataSourceFactory(isLoading);
 
         PagedList.Config config = (new PagedList.Config.Builder())
                 .setEnablePlaceholders(true)
@@ -41,6 +43,9 @@ public class UserViewModel extends AndroidViewModel {
                 .build();
     }
 
+    public void refresh() {
+        userDataSourceFactory.getMutableLiveData().getValue().invalidate();
+    }
     public LiveData<PagedList<Datum>> getUsers() {
         return usersList;
     }

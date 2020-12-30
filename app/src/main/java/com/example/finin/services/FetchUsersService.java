@@ -10,5 +10,5 @@ import retrofit2.http.Query;
 public interface FetchUsersService {
 
     @GET("/api/users")
-    Call<UserResponse> getUserList(@Query("page") int pageNo);
+    Call<UserResponse> getUserList(@Query("page") int pageNo, @Query("delay") int delay);
 }

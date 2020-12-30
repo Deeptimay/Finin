@@ -23,10 +23,10 @@ public class ProfileDetailFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FragmentProfileDetailsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_details, container, false);
-        View view = binding.getRoot();
+        FragmentProfileDetailsBinding fragmentProfileDetailsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_details, container, false);
+        View view = fragmentProfileDetailsBinding.getRoot();
         Datum userData = (Datum) getArguments().getSerializable("Datum");
-        binding.setUser(userData);
+        fragmentProfileDetailsBinding.setUser(userData);
         return view;
     }
 }

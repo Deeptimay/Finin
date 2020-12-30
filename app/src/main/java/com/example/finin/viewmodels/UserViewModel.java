@@ -27,7 +27,7 @@ public class UserViewModel extends AndroidViewModel {
 
         PagedList.Config config = (new PagedList.Config.Builder())
                 .setEnablePlaceholders(true)
-//                .setInitialLoadSizeHint(10)
+                .setInitialLoadSizeHint(10)
                 .setPageSize(6)
                 .setPrefetchDistance(4)
                 .build();
